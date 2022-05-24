@@ -14,7 +14,7 @@
 
 <body style="background-color: #ddf5e3d1;">
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ url('/') }}">
       <img src="{{ asset('img/logo.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
       DSSBet
     </a>
@@ -39,16 +39,16 @@
           <a class="nav-link" href="{{ url('/') }}">Indice <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/users') }}">Usuarios</a>
+          <a class="nav-link" href="{{ url('/admin/users') }}">Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/games') }}">Games</a>
+          <a class="nav-link" href="{{ url('/admin/games') }}">Games</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/tickets') }}">Tickets</a>
+          <a class="nav-link" href="{{ url('/admin/tickets') }}">Tickets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/ticketlines') }}">TicketLines</a>
+          <a class="nav-link" href="{{ url('/admin/ticketlines') }}">TicketLines</a>
         </li>
         @endisadmin
         

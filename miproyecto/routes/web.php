@@ -19,6 +19,7 @@ use App\Http\Controllers\CuponCookieController;
 |
 */
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('inicio');
 Route::get('/bet', [HomeController::class, 'matches'])->name('bet'); 
 
 //Route::get('/games', [GamesController::class, 'index'])->name('games');
@@ -58,43 +59,43 @@ Route::post('cupon', [CuponCookieController::class, 'add'])->name('ticket-cookie
 Route::delete('/cupon/{matchId}', [CuponCookieController::class, 'delete'])->name('ticket-cookie-delete'); 
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('/users/add', function() {return view('users.form'); })->name('users-add');
-    Route::post('users/add', [UsersController::class, 'store'])->name('users-store');  
-    Route::get('/users', [UsersController::class, 'index'])->name('users-index'); 
-    Route::post('/users', [UsersController::class, 'filter'])->name('users-filter');
-    Route::get('/users/order/{opt}', [UsersController::class, 'indexBy'])->name('users-index-order'); 
-    Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users-delete'); 
-    Route::get('/users/{id}', [UsersController::class, 'show'])->name('users-edit'); 
-    Route::patch('/users/{id}', [UsersController::class, 'update'])->name('users-update'); 
+    Route::get('/admin/users/add', function() {return view('users.form'); })->name('users-add');
+    Route::post('admin/users/add', [UsersController::class, 'store'])->name('users-store');  
+    Route::get('/admin/users', [UsersController::class, 'index'])->name('users-index'); 
+    Route::post('/admin/users', [UsersController::class, 'filter'])->name('users-filter');
+    Route::get('/admin/users/order/{opt}', [UsersController::class, 'indexBy'])->name('users-index-order'); 
+    Route::delete('/admin/users/{id}', [UsersController::class, 'destroy'])->name('users-delete'); 
+    Route::get('/admin/users/{id}', [UsersController::class, 'show'])->name('users-edit'); 
+    Route::patch('/admin/users/{id}', [UsersController::class, 'update'])->name('users-update'); 
 
     // Credit Card
-    Route::post('/users/{id}/creditcards/add', [CreditCardsController::class, 'store'])->name('creditcards-store'); 
+    Route::post('/admin/users/{id}/creditcards/add', [CreditCardsController::class, 'store'])->name('creditcards-store'); 
 
     // Ticket Lines
-    Route::get('/ticketlines/add', function() { return view('ticketlines.form'); })->name('ticketlines-add');
+    Route::get('/admin/ticketlines/add', function() { return view('ticketlines.form'); })->name('ticketlines-add');
     Route::post('ticketlines/add', [TicketLinesController::class, 'store'])->name('ticketlines-store');
-    Route::get('/ticketlines/order/{opt}', [TicketLinesController::class, 'indexBy'])->name('ticketlines-index-order'); 
-    Route::get('/ticketlines', [TicketLinesController::class, 'index'])->name('ticketlines-index');
+    Route::get('/admin/ticketlines/order/{opt}', [TicketLinesController::class, 'indexBy'])->name('ticketlines-index-order'); 
+    Route::get('/admin/ticketlines', [TicketLinesController::class, 'index'])->name('ticketlines-index');
 
-    Route::delete('/ticketlines/{id}', [TicketLinesController::class, 'destroy'])->name('ticketlines-delete'); 
-    Route::get('/ticketlines/{id}', [TicketLinesController::class, 'show'])->name('ticketlines-edit'); 
-    Route::patch('/ticketlines/{id}', [TicketLinesController::class, 'update'])->name('ticketlines-update'); 
+    Route::delete('/admin/ticketlines/{id}', [TicketLinesController::class, 'destroy'])->name('ticketlines-delete'); 
+    Route::get('/admin/ticketlines/{id}', [TicketLinesController::class, 'show'])->name('ticketlines-edit'); 
+    Route::patch('/admin/ticketlines/{id}', [TicketLinesController::class, 'update'])->name('ticketlines-update'); 
 
     // Games
-    Route::get('/games/add', function() { return view('games.form'); })->name('games-add');
-    Route::post('games/add', [GameController::class, 'store'])->name('games-store');  
-    Route::get('/games', [GameController::class, 'index'])->name('games-index');
-    Route::post('/games', [GameController::class, 'filter'])->name('games-filter'); 
-    Route::delete('/games/{id}', [GameController::class, 'destroy'])->name('games-delete'); 
-    Route::get('/games/{id}', [GameController::class, 'show'])->name('games-edit'); 
-    Route::patch('/games/{id}', [GameController::class, 'update'])->name('games-update'); 
-    Route::patch('/ticketlines/{id}', [TicketLinesController::class, 'update'])->name('ticketlines-update');
+    Route::get('/admin/games/add', function() { return view('games.form'); })->name('games-add');
+    Route::post('admin/games/add', [GameController::class, 'store'])->name('games-store');  
+    Route::get('/admin/games', [GameController::class, 'index'])->name('games-index');
+    Route::post('/admin/games', [GameController::class, 'filter'])->name('games-filter'); 
+    Route::delete('/admin/games/{id}', [GameController::class, 'destroy'])->name('games-delete'); 
+    Route::get('/admin/games/{id}', [GameController::class, 'show'])->name('games-edit'); 
+    Route::patch('/admin/games/{id}', [GameController::class, 'update'])->name('games-update'); 
+    Route::patch('/admin/ticketlines/{id}', [TicketLinesController::class, 'update'])->name('ticketlines-update');
 
     // Ticket
-    Route::get('/tickets/add', function() { return view('tickets.form'); })->name('tickets-add');
-    Route::get("/tickets", [TicketsController::class, 'index'])->name('tickets-index'); 
-    Route::delete('/tickets/{id}', [TicketsController::class, 'destroy'])->name('tickets-delete');
-    Route::get('/tickets/{id}', [TicketsController::class, 'show'])->name('tickets-edit');  
-    Route::post('tickets/add', [TicketsController::class, 'store'])->name('tickets-store');  
-    Route::patch('/tickets/{id}', [TicketsController::class, 'update'])->name('tickets-update');
+    Route::get('/admin/tickets/add', function() { return view('tickets.form'); })->name('tickets-add');
+    Route::get('/admin/tickets', [TicketsController::class, 'index'])->name('tickets-index'); 
+    Route::delete('/admin/tickets/{id}', [TicketsController::class, 'destroy'])->name('tickets-delete');
+    Route::get('/admin/tickets/{id}', [TicketsController::class, 'show'])->name('tickets-edit');  
+    Route::post('admin/tickets/add', [TicketsController::class, 'store'])->name('tickets-store');  
+    Route::patch('/admin/tickets/{id}', [TicketsController::class, 'update'])->name('tickets-update');
 });
