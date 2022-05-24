@@ -63,9 +63,6 @@
         <a class="nav-link" href="{{ url('/user/tickets') }}">Historial de apuestas</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="{{ url('/user/tickets') }}">Historial de apuestas</a>
-      </li>
-        <li class="nav-item">
           <a class="nav-link" href="{{ url('/user/creditcards') }}">Añadir credito</a>
         </li>
         <li class="nav-item">
@@ -78,15 +75,6 @@
 
   </nav>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
->>>>>>> develop
-
-=======
->>>>>>> develop
   <div class="container mt-4 ">
     @yield('content')
   </div>
