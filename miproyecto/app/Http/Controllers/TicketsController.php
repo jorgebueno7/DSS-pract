@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Http\Controllers\TicketLinesController;
 use App\Models\TicketLine;
+use Illuminate\Support\Facades\Auth;
 
 class TicketsController extends Controller
 {
@@ -54,5 +55,11 @@ class TicketsController extends Controller
         return view('tickets.show', ['ticket' => $ticket]);
     }
 
+    public function showUserTickets(){
+        $user = Auth::user(); 
+        $tickets = $user->tickets->reverse();  
+
+        return view('session.user-tickethistory', ['tickets' => $tickets]); 
+    }
     
 }

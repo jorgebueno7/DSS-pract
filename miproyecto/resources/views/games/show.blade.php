@@ -47,7 +47,14 @@
                 <label for="title" class="form-label">Goles Visitante </label>
                 <input type="number" step="0.01" class="form-control mb-2" name="golesVisitante" id="equipo1" placeholder="golesVisitante" value="{{ $game->golesVisitante }}">
 
-
+                <div class="form-check">
+                @if(!$game->played )
+                <input class="form-check-input" type="checkbox" name="gamePlayed" value="1" id="gamePlayed">
+                @endif
+                <label class="form-check-label" for="gamePlayed">
+                    Partido finalizado
+                </label>
+                </div>
         
                 <input type="submit" value="Actualizar" class="btn btn-success my-2" />
             </div>

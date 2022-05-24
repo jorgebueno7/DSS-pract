@@ -15,7 +15,7 @@ class Game extends Model
     }
 
     public function resultado(){
-        if($this->golesLocal == -1 && $this->golesVisitante == -1){
+        if(!$this->played){
             return GameResultEnum::PENDIENTE; 
         }
         if($this->golesLocal > $this->golesVisitante){

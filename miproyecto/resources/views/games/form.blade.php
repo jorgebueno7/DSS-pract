@@ -46,8 +46,16 @@
 
                 <label for="title" class="form-label">Goles Visitante </label>
                 <input type="number" step="0.01" class="form-control mb-2" name="golesVisitante" id="golesVisitante" placeholder="goles del visitante">
-
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="gamePlayed" value="1" id="gamePlayed">
+                <label class="form-check-label" for="gamePlayed">
+                    Partido finalizado
+                </label>
+                </div>
+                
                 <input type="submit" value="Crear partido" class="btn btn-primary my-2" />
+
+                
             </div>
         </form>
                     <div class="d-flex flex-row-reverse">

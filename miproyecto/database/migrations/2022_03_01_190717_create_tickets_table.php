@@ -19,6 +19,7 @@ class CreateTicketsTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
             $table->timestamps();
             $table->unique(['id', 'user_id']);
+            $table->boolean('paid')->default(false); 
         });
     }
 

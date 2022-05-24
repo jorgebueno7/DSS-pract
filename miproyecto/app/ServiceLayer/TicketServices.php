@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Ticket; 
 use App\Models\Game; 
 use App\Models\TicketLine; 
+use App\Models\User; 
+use App\Enum\TicketStatusEnum; 
 
 
 class TicketServices {
@@ -42,5 +44,30 @@ class TicketServices {
 
         DB::commit(); 
         return $ticket->id; 
+    }
+
+
+    public static function updateTickets($game){
+        if(!$game->played){
+            return null; 
+        }
+        DB::beginTransaction(); 
+
+        foreach ($game->ticketLines as $tl){
+            $tc = $tl->ticket;
+            if(!$tc->paid && $tc->status() == TicketStatusEnum::GANADO){
+                $prize = $tc->getPremio(); 
+
+                $tc->user->addSaldo($prize); 
+                
+                $tc->paid = true; 
+                $tc->user->save(); 
+                $tc->save(); 
+            }  
+        }
+
+        DB::commit(); 
+        return true; 
+
     }
 }

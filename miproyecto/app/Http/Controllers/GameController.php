@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\ServiceLayer\TicketServices; 
 use App\Models\Game;
 
 
@@ -20,7 +21,7 @@ class GameController extends Controller{
             'equipo1' => 'required',
             'equipo2' => 'required',
             'golesLocal' => 'required|integer',
-            'golesVisitante' => 'required|integer'
+            'golesVisitante' => 'required|integer',
         ]); 
         
     }
@@ -38,6 +39,9 @@ class GameController extends Controller{
         $game->equipo2 = $request->equipo2;
         $game->golesLocal = $request->golesLocal; 
         $game->golesVisitante = $request->golesVisitante; 
+        if($request->gamePlayed == "1"){
+            $game->played = true; 
+        }
 
         $game->save(); 
         return redirect()->route('games-add')->with('success', 'Partido creado correctamente'); 
@@ -96,6 +100,11 @@ class GameController extends Controller{
         $game->equipo2 = $request->equipo2;
         $game->golesLocal = $request->golesLocal; 
         $game->golesVisitante = $request->golesVisitante;
+        if($request->gamePlayed == "1"){
+            $game->played = true; 
+            $game->save(); 
+            TicketServices::updateTickets($game); 
+        }
 
         $game->save(); 
         return redirect()->route('games-edit', ['id' => $game->id])->with('success', 'Partido actualizado correctamente'); 
