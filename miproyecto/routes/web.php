@@ -45,9 +45,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user/balance/add', [CreditCardsController::class, 'addUserBalance'])->name('user-add-balance'); 
     Route::post('/user/balance/withdraw', [CreditCardsController::class, 'withdrawUserBalance'])->name('user-withdraw-balance');  
 <<<<<<< HEAD
+<<<<<<< HEAD
     Route::get('/user/profile', [UsersController::class, 'showProfileAuth'])->name('session-profile'); 
     Route::patch('/user/profile/{id}', [UsersController::class, 'updateProfileAuth'])->name('session-profile-update'); 
 =======
+    Route::get('/user/tickets', [TicketsController::class, 'showUserTickets'])->name('user-tickets-show');
+
+>>>>>>> develop
+=======
+    Route::get('/user/profile', [UsersController::class, 'showProfileAuth'])->name('session-profile'); 
+    Route::patch('/user/profile/{id}', [UsersController::class, 'updateProfileAuth'])->name('session-profile-update'); 
+
     Route::get('/user/tickets', [TicketsController::class, 'showUserTickets'])->name('user-tickets-show');
 
 >>>>>>> develop
